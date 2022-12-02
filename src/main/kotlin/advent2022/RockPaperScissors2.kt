@@ -33,13 +33,16 @@ fun main() {
 
 fun part2(list: List<List<String>>): Int {
     val myShapes = mutableListOf<String>()
-    for (i in list.indices){
+    for (i in list.indices) {
         myShapes += chooseShape(list[i][0], list[i][1])
     }
 
     val score = mutableListOf<Int>()
-    for (i in list.indices){
-        score += shapeSelectedScorePart2( myShapes[i]) + outcomeScore(RockPaperScissorsP1.valueOf(list[i][0]).value, RockPaperScissorsP1.valueOf(myShapes[i]).value)
+    for (i in list.indices) {
+        score += shapeSelectedScorePart2(myShapes[i]) + outcomeScore(
+            RockPaperScissorsP1.valueOf(list[i][0]).value,
+            RockPaperScissorsP1.valueOf(myShapes[i]).value
+        )
     }
     return score.sum()
 }
@@ -60,24 +63,24 @@ fun chooseShape(p1: String, p2: String): String {
     val player1 = RockPaperScissorsP1.valueOf(p1)
     val player2 = RockPaperScissorsP2.valueOf(p2)
 
-    val shape:RockPaperScissorsP1
-    when (player1 ){
+    val shape: RockPaperScissorsP1
+    when (player1) {
         RockPaperScissorsP1.A -> {
-            when(player2){
+            when (player2) {
                 RockPaperScissorsP2.X -> shape = RockPaperScissorsP1.C
                 RockPaperScissorsP2.Y -> shape = RockPaperScissorsP1.A
                 RockPaperScissorsP2.Z -> shape = RockPaperScissorsP1.B
             }
         }
         RockPaperScissorsP1.B -> {
-            when(player2){
+            when (player2) {
                 RockPaperScissorsP2.X -> shape = RockPaperScissorsP1.A
                 RockPaperScissorsP2.Y -> shape = RockPaperScissorsP1.B
                 RockPaperScissorsP2.Z -> shape = RockPaperScissorsP1.C
             }
         }
         RockPaperScissorsP1.C -> {
-            when(player2){
+            when (player2) {
                 RockPaperScissorsP2.X -> shape = RockPaperScissorsP1.B
                 RockPaperScissorsP2.Y -> shape = RockPaperScissorsP1.C
                 RockPaperScissorsP2.Z -> shape = RockPaperScissorsP1.A
@@ -89,17 +92,20 @@ fun chooseShape(p1: String, p2: String): String {
 
 fun part1(list: List<List<String>>): Any {
     val score = mutableListOf<Int>()
-    for (i in list.indices){
-        score += shapeSelectedScore(list[i][1]) + outcomeScore(RockPaperScissorsP1.valueOf(list[i][0]).value, RockPaperScissorsP2.valueOf(list[i][1]).value)
+    for (i in list.indices) {
+        score += shapeSelectedScore(list[i][1]) + outcomeScore(
+            RockPaperScissorsP1.valueOf(list[i][0]).value,
+            RockPaperScissorsP2.valueOf(list[i][1]).value
+        )
     }
     return score.sum()
 }
 
 
 fun outcomeScore(player1: Int, player2: Int): Int {
-    val score = when(player1 - player2){
-        0 ->  OutcomeRound.DRAW.value
-        -1, 2 ->  OutcomeRound.WON.value
+    val score = when (player1 - player2) {
+        0 -> OutcomeRound.DRAW.value
+        -1, 2 -> OutcomeRound.WON.value
         else -> OutcomeRound.LOST.value //-2 && 1
     }
     return score

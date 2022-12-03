@@ -6,7 +6,7 @@ import kotlin.io.path.readText
 enum class RockPaperScissorsP1(val value: Int) {
     A(1), //Rock
     B(2), //Paper
-    C(3), //Scissors
+    C(3) //Scissors
 }
 
 enum class RockPaperScissorsP2(val value: Int) {
@@ -90,7 +90,7 @@ fun chooseShape(p1: String, p2: String): String {
     return shape.name
 }
 
-fun part1(list: List<List<String>>): Any {
+fun part1(list: List<List<String>>): Int {
     val score = mutableListOf<Int>()
     for (i in list.indices) {
         score += shapeSelectedScore(list[i][1]) + outcomeScore(

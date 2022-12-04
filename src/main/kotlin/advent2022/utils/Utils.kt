@@ -32,3 +32,17 @@ infix fun IntRange.intersects(other: IntRange): Boolean =
 
 fun IntRange.size(): Int =
     last - first + 1
+
+/**
+ * Rang overlaps at some point
+ */
+fun IntRange.contains(r1: IntRange): Boolean {
+    return r1.toList().any { it in this }
+}
+
+/**
+ * range is in range
+ */
+fun IntRange.fullyContains(r1: IntRange): Boolean {
+    return r1.first >= this.first && r1.last <= this.last
+}

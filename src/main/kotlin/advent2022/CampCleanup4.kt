@@ -7,7 +7,7 @@ import kotlin.io.path.readText
 
 fun main() {
     val list =
-        Path("src/main/resources/2022day4_1.txt").readText().split("\n").map { it.split(",").map { it.toRange() } }
+        Path("src/main/resources/2022day4_1.txt").readText().split("\n").map { it -> it.split(",").map { it.toRange() } }
 
     val result1 = list.count { it[0].fullyContains(it[1]) || it[1].fullyContains(it[0]) }
     println(result1)

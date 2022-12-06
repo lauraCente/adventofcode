@@ -62,7 +62,6 @@ fun readIntsToMatrix(path:String, i:Int, j:Int): MutableList<MutableList<Int>>{
     val matrix = MutableList(i){MutableList(j){scanner.nextInt()}}
     return matrix
 }
-
 fun readAllLinesFromScanner(scanner: Scanner): MutableList<String> {
     val list = mutableListOf<String>()
     while (scanner.hasNext()){

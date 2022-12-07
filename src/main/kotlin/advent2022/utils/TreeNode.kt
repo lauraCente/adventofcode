@@ -9,40 +9,21 @@ class TreeNode<T>(val data: T) {
         this.children.add(newchild)
     }
 
-
-    fun forEachDepthFirstElem( action: (T) -> Unit) {
-        action(this.data)
-        children.forEach {
-            it.forEachDepthFirstElem(action)
-        }
-    }
-
     fun forEachDepthFirst( action: (TreeNode<T>) -> Unit) {
-
         children.forEach {
             it.forEachDepthFirst(action)
         }
         action(this)
     }
 
-
-    fun forEach(function: (TreeNode<T>) -> Unit) {
-        function(this)
+    fun <Z>toListOfDepthFirst( action: (TreeNode<T>) -> Z):List<Z> {
+        val result = mutableListOf<Z>()
         children.forEach {
-            it.forEach(function)
+            result.addAll(it.toListOfDepthFirst(action))
         }
+        result+=action(this)
+        return result
     }
-
-//    fun sumOf( action: (Int) -> Int) {
-//
-//        var x = children.forEach {
-//            it.sumOf(action)
-//        }
-//        var sol = x + (Int)this.data
-//        return sol
-//    }
-
-
 
 }
 

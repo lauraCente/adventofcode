@@ -28,24 +28,11 @@ fun main() {
             head = headMoved
             if (tailMoved != null) tail.add(tailMoved)
         }
-
     }
     val tailSet = tail.toSet()
     println(tailSet)
     println(tailSet.size)
-
-
 }
-
-/*
-si distancia > 2
-(>=1,?) -> (1,0)
-(<=1,?) -> (-1,0)
-(?,>=1) -> (0,1)
-(?,<=1) -> (0,-1)
-5,1 - 3,0
-
- */
 
 fun moveTail(lastHead: Point, currentHead: Point, tail: Point): Point? {
     val distance1 = distanceMax1(currentHead, tail)

@@ -1,13 +1,13 @@
 package advent2022.utils
 
 
-fun <T> List<List<T>>.forEachIndexed(action: (i: Int, j: Int, element: T) -> Unit) {
-    for (i in this.indices) {
-        for (j in this[i].indices) {
-            action(i, j, this[i][j])
-        }
-    }
-}
+//fun <T> List<List<T>>.forEachIndexed(action: () -> Unit) {
+//    for (i in this.indices) {
+//        for (j in this[i].indices) {
+//            action(i, j, this[i][j])
+//        }
+//    }
+//}
 
 /*
 

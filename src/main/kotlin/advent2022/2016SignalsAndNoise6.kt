@@ -1,6 +1,6 @@
 package advent2022
 
-import advent2022.utils.forEachIndexed
+
 import kotlin.io.path.Path
 import kotlin.io.path.readText
 
@@ -23,7 +23,7 @@ fun main() {
             }
         }
         //word += myMap.toList().maxByOrNull { (k,v) -> v  }?.first ?: ""
-        word += myMap.toList().minByOrNull { (k,v) -> v  }?.first ?: ""
+        word += myMap.toList().minByOrNull { (_,v) -> v  }?.first ?: ""
     }
 
     println(word)

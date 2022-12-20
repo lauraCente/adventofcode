@@ -1,4 +1,4 @@
-package advent2022
+package advent2022v2
 
 import kotlin.io.path.Path
 import kotlin.io.path.readText
@@ -8,7 +8,7 @@ import kotlin.math.min
 data class SandFalling(var x: Int, var y: Int, var lastMoveExecuted: Boolean)
 
 //                                      20
-val matrix = List<MutableList<Int>>(180) { MutableList<Int>(525) { 0 } }
+val matrix = List<MutableList<Int>>(179) { MutableList<Int>(680) { 0 } }
 fun main() {
 
     val lines = Path("src/main/resources/2022day14_1.txt").readText().split("\n")
@@ -23,10 +23,22 @@ fun main() {
             pointA = pointB
         }
     }
+    putFloor()
+    paintMatrix()
+    var sand = 1
+    var sandFalling = throwSand(SandFalling(0, 500, true))
+    while (sandFalling.x > 0) {
+        sandFalling = throwSand(SandFalling(0, 500, true))
+        sand++
+    }
+    paintMatrix()
+    println(sand)
+}
 
+fun paintMatrix() {
     matrix.forEachIndexed { i, el ->
         el.forEachIndexed { j, ele ->
-            if (j > 450 && i > 11) {
+            if (j > 450 ) {
                 var color = "\u001b[0m"
                 if (j == 500) {
                     color = "\u001b[31m"
@@ -38,41 +50,14 @@ fun main() {
     }
     println()
     println()
+    println()
+    println()
+}
 
-    var sand = 1
-    var sandFalling = throwSand(SandFalling(0, 500, true))
-
-    while (sandFalling.x < matrix.lastIndex) {
-
-        sandFalling = throwSand(SandFalling(0, 500, true))
-        sand++
-        if (sand in 11..12) {
-            matrix.forEachIndexed { i, el ->
-                el.forEachIndexed { j, ele ->
-                    if (j > 450 && i > 11) {
-                        var color = "\u001b[0m"
-                        if (j == 500) {
-                            color = "\u001b[31m"
-                        }
-                        print(color + ele)
-                    }
-                }
-                println()
-            }
-            println()
-            println()
-            println()
-            println()
-        }
-
-
+fun putFloor() {
+    for (j in matrix[matrix.lastIndex].indices) {
+        matrix[matrix.lastIndex][j] = 1
     }
-
-
-
-
-    println(sand - 1)
-
 }
 
 fun throwSand(sandFalling: SandFalling): SandFalling {
@@ -90,8 +75,6 @@ fun throwSand(sandFalling: SandFalling): SandFalling {
         return p
     } else return throwSand(sandFallingT)
 }
-
-
 
 
 fun place(sandFalling: SandFalling): SandFalling {

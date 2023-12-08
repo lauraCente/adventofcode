@@ -27,6 +27,22 @@ fun List<String>.subListByElement(elementSplit: String): MutableList<MutableList
     return listOfLists
 }
 
+/**
+ * Compares if a list has at least x elements in common to another list
+ */
+fun elementsEquals(list1: List<Any>, list2: List<Any>, x:Int): Boolean {
+    var count = 0
+    for (element in list1) {
+        if (list2.contains(element)) {
+            count++
+        }
+        if (count >= x) {
+            return true
+        }
+    }
+    return false
+}
+
 infix fun IntRange.intersects(other: IntRange): Boolean =
     first <= other.last && last >= other.first
 
